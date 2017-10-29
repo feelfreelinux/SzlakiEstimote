@@ -15,6 +15,8 @@ Aplikacja miała się opierać o wymianę szlaków między użytkownikami - udo
 
 Struktura odpowiedzi JSON:
 Odpowiedź z listą szlaków posiada taką strukturę json: https://gist.github.com/feelfreelinux/c45bef3bcb63a27c813f7cb16297c6a4
+
+
 A lista "Zabytków": https://gist.github.com/feelfreelinux/47cad9d961fa4c45309920a5e155a261
 
 Aby dodać nowy zabytek należy dodać go do listy zabytków, i stworzyć nowy szlak.
