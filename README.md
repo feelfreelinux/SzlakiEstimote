@@ -9,6 +9,7 @@ Aplikacje oparłem o architekture MVP wraz z biliotekami:
 - Gson
 - Dagger2
 - Język programowania : Kotlin
+
 Niestety zabrakło mi czasu na zaimplementowanie tej architektury w wszyskich ekranach, i niektóre activity posiadają dużo bałaganu w activity. Aplikacja nie jest duża, wię poprawienie tego poza hackathonem nie będzie problemem.
 Aplikacja miała się opierać o wymianę szlaków między użytkownikami - udostępnione szlaki powinny być wysyłane do bazy danych, lecz z powodu wykorzystania github gist nie miałem czasu ani możliwości zaimplementowania tego. Za to dodalem możliwość udostępniania szlaków w osobnych wklejkach, które są automatycznie wysyłane do serwisu Github Gist, oraz skracane poprzez google url shortener. Chciałem napisać obsługę importowania tych linków w aplikacji, ale zrobiło by to bałagan poniewasz aplikacja ma się opierać o jedną bazę danych. Kolejną rzeczą którą mógłbym poprawić, to edycja pytań - narazie nie ma możliwosci edytowania pytania po jego utworzeniu.
 
