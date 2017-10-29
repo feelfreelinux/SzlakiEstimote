@@ -1,4 +1,4 @@
-package io.feelfree.estimotezabytki.ui
+package io.feelfree.estimotezabytki.utils
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -11,10 +11,9 @@ import android.support.v4.app.NotificationCompat
 
 class NotificationCreator {
 
-    private val CHANNEL_ID = "ESTIMOTE_SCAN"
-    private val CHANNEL_NAME = "Estimote bluetooth scan notifications"
-    private val CHANNEL_DESCRIPTION = "Blah blah blah"
-    private val NOTIFICATION_TITLE = "Szlak\u00AE"
+    private val CHANNEL_ID = "ESTIMOTE_SZLAK"
+    private val CHANNEL_NAME = "Estimote szlak skanowanie"
+    private val NOTIFICATION_TITLE = "Szlak"
     private val NOTIFICATION_TEXT = "Szukanie punktu szlaku..."
 
     fun create(context: Context): Notification =
@@ -44,10 +43,8 @@ class NotificationCreator {
     private fun createNotificationChannel(context: Context) {
         val id = CHANNEL_ID
         val name = CHANNEL_NAME
-        val description = CHANNEL_DESCRIPTION
         val importance = android.app.NotificationManager.IMPORTANCE_HIGH
         val mChannel = NotificationChannel(id, name, importance)
-        mChannel.description = description
         val mNotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
         mNotificationManager.createNotificationChannel(mChannel)
     }

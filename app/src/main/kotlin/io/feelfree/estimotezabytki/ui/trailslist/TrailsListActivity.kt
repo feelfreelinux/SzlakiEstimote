@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.estimote.proximity_sdk.monitoring.MonitorFactory
 import io.feelfree.estimotezabytki.App
 import io.feelfree.estimotezabytki.R
 import io.feelfree.estimotezabytki.base.BaseActivity
 import io.feelfree.estimotezabytki.models.pojo.TrailResponse
-import io.feelfree.estimotezabytki.ui.NotificationCreator
 import io.feelfree.estimotezabytki.ui.adapter.TrailListAdapter
 import io.feelfree.estimotezabytki.ui.dialogs.UploadedLinkDialog
 import io.feelfree.estimotezabytki.ui.openTrailEditorActivity
@@ -33,6 +31,7 @@ class TrailsListActivity : BaseActivity(), TrailsListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         App.uiInjector.inject(this)
         setContentView(R.layout.activity_trailslist)
         loadingView.visibility = View.VISIBLE

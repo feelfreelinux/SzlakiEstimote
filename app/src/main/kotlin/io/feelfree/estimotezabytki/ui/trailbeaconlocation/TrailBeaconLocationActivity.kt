@@ -1,19 +1,21 @@
 package io.feelfree.estimotezabytki.ui.trailbeaconlocation
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat.*
 import android.view.View
-import android.widget.Toast
 import com.estimote.proximity_sdk.monitoring.EstimoteMonitor
 import com.estimote.proximity_sdk.monitoring.MonitorFactory
 import io.feelfree.estimotezabytki.R
 import io.feelfree.estimotezabytki.base.BaseActivity
 import io.feelfree.estimotezabytki.models.pojo.TrailResponse
-import io.feelfree.estimotezabytki.ui.NotificationCreator
+import io.feelfree.estimotezabytki.utils.NotificationCreator
 import io.feelfree.estimotezabytki.ui.congratss.startCongratsActivity
 import io.feelfree.estimotezabytki.ui.quizactivity.QuizActivity
 import io.feelfree.estimotezabytki.utils.TrailManager
@@ -28,6 +30,7 @@ fun Context.openBeaconLocationActivity(trail : TrailResponse) {
 class TrailBeaconLocationActivity : BaseActivity() {
     companion object {
         val EXTRA_TRAIL = "EXTRA_TRAIL"
+        val PERMISSION_REQUESTCODE = 15
     }
     val trail by lazy { intent.getParcelableExtra<TrailResponse>(EXTRA_TRAIL) }
     var scanHandler : EstimoteMonitor.Handler? = null
@@ -42,7 +45,7 @@ class TrailBeaconLocationActivity : BaseActivity() {
         supportActionBar?.title = "Twój cel"
 
         openQuiz.visibility = View.GONE
-        startMonitoringForId(trailManager.getCurrentBeacon().id)
+        checkPermissions()
     }
 
     fun startMonitoringForId(id : String) {
@@ -100,6 +103,20 @@ class TrailBeaconLocationActivity : BaseActivity() {
                         finish()
                     }
                 }
+            }
+        }
+    }
+
+    fun checkPermissions() {
+        if (checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_REQUESTCODE )
+        } else startMonitoringForId(trailManager.getCurrentBeacon().id)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == PERMISSION_REQUESTCODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startMonitoringForId(trailManager.getCurrentBeacon().id)
             }
         }
     }

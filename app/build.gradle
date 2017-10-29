@@ -36,30 +36,25 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     // Support Library
     implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
     implementation "com.android.support:design:$versions.supportLibrary"
     implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
-
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
-
     // RxJava
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
-
     // Estimote SDK
     implementation 'com.estimote:proximity-sdk:0.1.0-alpha.4'
-
     // Dagger 2
     implementation "com.google.dagger:dagger:$versions.dagger2"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger2"
     compileOnly "org.glassfish:javax.annotation:$versions.javax_annotations"
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.1", {
         exclude group: 'com.android.support', module: 'support-annotations'
